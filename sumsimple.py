@@ -41,25 +41,23 @@ try:
 		try:
 			entero = int(peticion.split()[1][1:])
 
+			print entero
+			if sumando == 0:
+				print "SUMANDO ES 0"
+				sumando=entero;
+				respuesta = "dame otro numero";
+			else:
+				resultado = entero + sumando;
+				respuesta = "El resultado de la suma es :" + str(entero) + "+" + str(sumando) + "=" + str(resultado);
+				sumando=0;
+
+			Numaleatorio = random.randint(0,100000)
+			recvSocket.send("HTTP/1.1 200 OK\r\n\r\n" +
+				              "<html><body><h1>HOLA!"
+				               + respuesta + "</p>" + "<html><body><html>" +
+				              "\r\n")
 		except ValueError:
 			continue
-
-		print entero
-		if sumando == 0:
-			print "SUMANDO ES 0"
-			sumando=entero;
-			respuesta = "dame otro numero";
-		else:
-			resultado = entero + sumando;
-			respuesta = "El resultado de la suma es :" + str(entero) + "+" + str(sumando) + "=" + str(resultado);
-			sumando=0;
-
-		Numaleatorio = random.randint(0,100000)
-		recvSocket.send("HTTP/1.1 200 OK\r\n\r\n" +
-		                 "<html><body><h1>HOLA!"
-		                  + respuesta + "</p>" + "<html><body><html>" +
-		                 "\r\n")
-
 		recvSocket.close()
 except KeyboardInterrupt:
 	mysocket.close()
